@@ -108,6 +108,7 @@ public class TelaCadastroComputador extends javax.swing.JFrame {
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Marca", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Rockwell", 1, 12))); // NOI18N
         jPanel6.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
 
+        jTF_Marca.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         jTF_Marca.setText("Marca");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
