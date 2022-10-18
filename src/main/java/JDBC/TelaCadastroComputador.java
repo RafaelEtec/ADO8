@@ -22,6 +22,7 @@ public class TelaCadastroComputador extends javax.swing.JFrame {
     public TelaCadastroComputador() {
         initComponents();
         jTF_Marca.setText("Rafael Goulart");
+        jL_ID.setText("");
         jTF_Marca.setEnabled(false);
     }
     
@@ -311,9 +312,11 @@ public class TelaCadastroComputador extends javax.swing.JFrame {
             boolean retorno = ComputadorDAO.atualizar(objComputador);
             if(retorno){
                 JOptionPane.showMessageDialog(this,"Nota alterada com sucesso!");
+                limpaEspacos();
             }else{
                 JOptionPane.showMessageDialog(this,"Falha na gravação!");
             }
+            objComputador = null;
         }
     }//GEN-LAST:event_jB_SalvarActionPerformed
 
