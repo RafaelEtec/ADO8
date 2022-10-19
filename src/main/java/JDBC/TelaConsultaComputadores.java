@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package JDBC;
-
+/**
+   por Rafael Ferreira Goulart
+**/
 import DAO.ComputadorDAO;
 import MODEL.Computador;
 import java.util.ArrayList;
@@ -31,9 +33,25 @@ public class TelaConsultaComputadores extends javax.swing.JFrame {
         modelo.setRowCount(0);
         for (Computador item : lista) {
             modelo.addRow(new String[]{String.valueOf(item.getIDPC()),
-                                        String.valueOf(item.getMarca()),
-                                        String.valueOf(item.getHD()),
-                                        String.valueOf(item.getProcessador())
+                                       String.valueOf(item.getMarca()),
+                                       String.valueOf(item.getHD()),
+                                       String.valueOf(item.getProcessador())
+                                    });
+        }
+    }
+    
+    public void atualizaTabelaProc() {
+        String processador = jCB_BuscaProc.getSelectedItem().toString();
+        
+        ArrayList<Computador> lista =  ComputadorDAO.listarPro(processador);
+        DefaultTableModel modelo = (DefaultTableModel) jT_Consulta.getModel();
+        
+        modelo.setRowCount(0);
+        for (Computador item : lista) {
+            modelo.addRow(new String[]{String.valueOf(item.getIDPC()),
+                                       String.valueOf(item.getMarca()),
+                                       String.valueOf(item.getHD()),
+                                       String.valueOf(item.getProcessador())
                                     });
         }
     }
@@ -61,6 +79,7 @@ public class TelaConsultaComputadores extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jCB_BuscaProc = new javax.swing.JComboBox<>();
         jB_BuscaProc = new javax.swing.JButton();
+        jB_Limpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -223,11 +242,19 @@ public class TelaConsultaComputadores extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jB_BuscaProc.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        jB_BuscaProc.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         jB_BuscaProc.setText("Buscar");
         jB_BuscaProc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_BuscaProcActionPerformed(evt);
+            }
+        });
+
+        jB_Limpar.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        jB_Limpar.setText("Limpar");
+        jB_Limpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_LimparActionPerformed(evt);
             }
         });
 
@@ -239,17 +266,22 @@ public class TelaConsultaComputadores extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jB_BuscaProc, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addComponent(jB_BuscaProc)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jB_Limpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jB_BuscaProc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jB_BuscaProc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jB_Limpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -289,6 +321,7 @@ public class TelaConsultaComputadores extends javax.swing.JFrame {
             
             TelaCadastroComputador novaTela = new TelaCadastroComputador(obj);
             novaTela.setVisible(true);
+            this.setVisible(false);
         }
     }//GEN-LAST:event_jB_AlterarActionPerformed
 
@@ -306,8 +339,12 @@ public class TelaConsultaComputadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_ExcluirActionPerformed
 
     private void jB_BuscaProcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_BuscaProcActionPerformed
-        
+        atualizaTabelaProc();
     }//GEN-LAST:event_jB_BuscaProcActionPerformed
+
+    private void jB_LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_LimparActionPerformed
+        atualizaTabela();
+    }//GEN-LAST:event_jB_LimparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,6 +385,7 @@ public class TelaConsultaComputadores extends javax.swing.JFrame {
     private javax.swing.JButton jB_Alterar;
     private javax.swing.JButton jB_BuscaProc;
     private javax.swing.JButton jB_Excluir;
+    private javax.swing.JButton jB_Limpar;
     private javax.swing.JButton jB_Voltar;
     private javax.swing.JComboBox<String> jCB_BuscaProc;
     private javax.swing.JLabel jLabel1;

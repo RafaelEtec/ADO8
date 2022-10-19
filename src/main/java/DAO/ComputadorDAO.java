@@ -1,5 +1,7 @@
 package DAO;
-
+/**
+   por Rafael Ferreira Goulart
+**/
 import MODEL.Computador;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +11,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+   por Rafael Ferreira Goulart
+**/
 public class ComputadorDAO {
     
     public static String url = "jdbc:mysql://localhost:3301/db_lojainformatica";
@@ -96,19 +100,7 @@ public class ComputadorDAO {
             listaRetorno = null;
         } catch (ClassNotFoundException ex) {
             listaRetorno = null;
-        } 
-//        finally {
-//            try {
-//                if (rs != null)
-//                    rs.close();
-//                if (sql != null)
-//                    sql.close();
-//                if (con != null)
-//                    con.close();
-//            } catch (SQLException ex) {
-//                
-//            }
-//        }
+        }
         return listaRetorno;
     }
     
@@ -134,7 +126,7 @@ public class ComputadorDAO {
         return retorno;
     }
     
-    public static ArrayList<Computador> listarPro(Computador obj) {
+    public static ArrayList<Computador> listarPro(String processador) {
         ArrayList<Computador> listaRetorno = new ArrayList<>();
         Connection con = null;
         boolean retorno = false;
@@ -143,7 +135,7 @@ public class ComputadorDAO {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, login, senha);
             PreparedStatement sql = con.prepareStatement("SELECT * FROM tb_computador WHERE Processador = ?;");
-            sql.setString(1, obj.getProcessador());
+            sql.setString(1, processador);
             ResultSet rs = sql.executeQuery();
             
             if (rs != null) {
@@ -163,19 +155,7 @@ public class ComputadorDAO {
             listaRetorno = null;
         } catch (ClassNotFoundException ex) {
             listaRetorno = null;
-        } 
-//        finally {
-//            try {
-//                if (rs != null)
-//                    rs.close();
-//                if (sql != null)
-//                    sql.close();
-//                if (con != null)
-//                    con.close();
-//            } catch (SQLException ex) {
-//                
-//            }
-//        }
+        }
         return listaRetorno;
     }
 }

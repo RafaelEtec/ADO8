@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package JDBC;
-
+/**
+   por Rafael Ferreira Goulart
+**/
 import DAO.ComputadorDAO;
 import MODEL.Computador;
 import javax.swing.JOptionPane;
