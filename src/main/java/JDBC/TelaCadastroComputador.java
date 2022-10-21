@@ -313,7 +313,7 @@ public class TelaCadastroComputador extends javax.swing.JFrame {
             
             boolean retorno = ComputadorDAO.atualizar(objComputador);
             if(retorno){
-                JOptionPane.showMessageDialog(this,"Nota alterada com sucesso!");
+                JOptionPane.showMessageDialog(this,"Pedido alterado com sucesso!");
                 limpaEspacos();
             }else{
                 JOptionPane.showMessageDialog(this,"Falha na gravação!");

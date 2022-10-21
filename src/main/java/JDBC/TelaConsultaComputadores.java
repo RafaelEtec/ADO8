@@ -317,7 +317,7 @@ public class TelaConsultaComputadores extends javax.swing.JFrame {
             obj.setIDPC(Integer.parseInt(jT_Consulta.getValueAt(linhaSelecionada, 0).toString()));
             obj.setMarca(String.valueOf(jT_Consulta.getValueAt(linhaSelecionada, 1).toString()));
             obj.setHD(String.valueOf(jT_Consulta.getValueAt(linhaSelecionada, 2).toString()));
-            obj.setProcessador(String.valueOf(jT_Consulta.getValueAt(linhaSelecionada, 2).toString()));
+            obj.setProcessador(String.valueOf(jT_Consulta.getValueAt(linhaSelecionada, 3).toString()));
             
             TelaCadastroComputador novaTela = new TelaCadastroComputador(obj);
             novaTela.setVisible(true);

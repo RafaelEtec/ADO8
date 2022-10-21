@@ -11,22 +11,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-/**
-   por Rafael Ferreira Goulart
-**/
 public class ComputadorDAO {
-    
     public static String url = "jdbc:mysql://localhost:3301/db_lojainformatica";
     public static String login = "root";
     public static String senha = "";
     
     public static boolean salvar(Computador obj){
-        
         Connection con = null;
         boolean retorno = false;
         
         try {
-            
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url,login,senha);
             PreparedStatement sql = con.prepareStatement("INSERT INTO tb_computador(Marca, HD, Processador) VALUES(?, ?, ?)");
@@ -47,12 +41,10 @@ public class ComputadorDAO {
     }
     
     public static boolean atualizar(Computador obj){
-        
         Connection con = null;
         boolean retorno = false;
         
         try {
-            
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url,login,senha);
             PreparedStatement comandoSQL = con.prepareStatement("UPDATE tb_computador SET HD = ?, Processador = ? WHERE ID = ?");
@@ -75,7 +67,6 @@ public class ComputadorDAO {
     public static ArrayList<Computador> listar() {
         ArrayList<Computador> listaRetorno = new ArrayList<>();
         Connection con = null;
-        boolean retorno = false;
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
